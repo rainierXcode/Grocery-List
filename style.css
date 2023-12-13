@@ -71,12 +71,10 @@ body{
     font-family: 'Inter', sans-serif;
     color: #fff;
     border-radius: 0px 8px 8px 0px;
+    pointer-events: none;
 }
 
 
-/* .editIcon, .deleteIcon{
-    display: none;
-} */
 
 .change-button{
     display: none;
@@ -142,4 +140,15 @@ body{
     font-family: 'Inter', sans-serif;
     font-size: 16px;
     color: #CD3636;
+}
+
+.clearItem.cleared{
+    color: #6F8176;
+    pointer-events: none;
+}
+
+
+.submitBox button.active{
+    pointer-events: auto;
+    background-color: #6F8176'
 }

@@ -1,4 +1,4 @@
-let listOfItems = ["A", "B"]
+let listOfItems = ["Item1"]
 const ULList = document.querySelector(".listItem");
 const input = document.querySelector(".submitBox input")
 const submitButton = document.querySelector(".submitBox button")

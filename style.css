@@ -83,8 +83,9 @@ body{
     border: none;
     outline: none;
     height: 30px;
-    width: 15%
+    width: 15%;
 }
+
 
 .listItem li{
     display: flex;
@@ -123,6 +124,7 @@ body{
     gap: 10px;
 }
 
+
 .deleteIcon:hover path {
     fill: #DD4646;
   }
@@ -152,3 +154,49 @@ body{
     pointer-events: auto;
     background-color: #6F8176'
 }
+
+.fade-out{
+    animation: fadeOut 200ms ease-in-out;
+    opacity: 1;
+}
+
+.delete{
+    animation: fadeOut2 200ms ease forwards;
+    opacity: 1;
+}
+
+.fade-in, .new{
+    animation: fadeIn 200ms ease-out forwards;
+    opacity: 0;
+}
+
+
+    @keyframes fadeOut2 {
+        from {
+        opacity: 1;
+        }
+        to {
+        opacity: 0;
+        display: none;
+        }
+    }
+
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  

@@ -1,26 +1,45 @@
-let listOfItems = ['Object 1', 'Object 2', 'Object 3']
+let listOfItems = ["A", "B"]
 const ULList = document.querySelector(".listItem");
 const input = document.querySelector(".submitBox input")
 const submitButton = document.querySelector(".submitBox button")
 
-function renameItem(changeButton,editButton,deleteButton,inputElement) {
-    changeButton.style.display = "block"
+// renameItem function
+function renameItem(changeButton, editButton, deleteButton, inputElement) {
+    editButton.classList.add("fade-out")
+    deleteButton.classList.add("fade-out")
 
-    editButton.style.display = "none"
-    deleteButton.style.display = "none"
+    setTimeout(()=>{
+        inputElement.classList.add("canRename");
+        inputElement.removeAttribute("readonly");
+        editButton.style.display = "none"
+        deleteButton.style.display = "none"
+        editButton.classList.remove("fade-out")
+        deleteButton.classList.remove("fade-out")
+        changeButton.style.display = "block"
+        changeButton.classList.add("fade-in")
 
-    inputElement.classList.add("canRename");
-    inputElement.removeAttribute("readonly")
-}
-
-function changeButtonClicked(inputElement, changeButton, editButton, deleteButton,index){
+    },200)
+  }
+  
+  // changeButtonClicked function
+  function changeButtonClicked(inputElement, changeButton, editButton, deleteButton, index) {
     listOfItems[index] = inputElement.value;
-    changeButton.style.display = "none"
-    inputElement.classList.remove("canRename");
-    inputElement.setAttribute("readonly", true);
-    editButton.style.display = "block"
-    deleteButton.style.display = "block"
-}
+
+    changeButton.classList.add("fade-out")
+
+    setTimeout(()=>{
+        inputElement.classList.remove("canRename");
+        inputElement.setAttribute("readonly", true);
+        changeButton.style.display = "none"
+        changeButton.classList.remove("fade-out")
+        editButton.style.display = "block"
+        deleteButton.style.display = "block"
+        editButton.classList.add("fade-in")
+        deleteButton.classList.add("fade-in")
+
+    },200)
+  }
+  
 
 function submit() {
     const itemValue = input.value;
@@ -87,7 +106,14 @@ function modifying(){
     
         deleteButton.addEventListener('click', (event) => {
             const clickedIndex = [...items].indexOf(event.target.closest("li"));
-            deleteItems(clickedIndex);
+            li.classList.add("delete")
+            console.log(li)
+            setTimeout(() => {
+  
+              // This part will execute after a delay of 10 seconds
+              deleteItems(clickedIndex);
+            }, 200);
+            
         });
     });
     
@@ -105,7 +131,7 @@ function createSingleItem(itemName) {
 
 
     const listItemTemplate = `
-    <li>
+    <li class="new">
       <input type="text" value="${itemName}" readonly class="itemName">
       <button class="change-button">Change</button>
       <div class="itemIcon">
@@ -114,6 +140,8 @@ function createSingleItem(itemName) {
       </div>
     </li>
   `;
+  
+
     return listItemTemplate;
 }
 
@@ -124,8 +152,8 @@ function clearItemsTextChecker(){
 function displayAllItems(list) {
     let compile = "";
     let newItem = ""
-    for (let item of list) {
-        newItem = createSingleItem(item);
+    for (let item = 0; item < list.length; item++) {
+        newItem = createSingleItem(list[item]);
         compile += newItem;
     }
     ULList.innerHTML = compile;
